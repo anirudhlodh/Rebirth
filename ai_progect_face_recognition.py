@@ -19,7 +19,7 @@ face_names = []
 process_this_frame = True
 while True:
     ret, frame = video_capture.read()
-    frame = imutils.resize(frame, width=1000)
+    frame = imutils.resize(frame, width=700)
     small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
     rgb_small_frame = small_frame[:, :, ::-1]
     if process_this_frame:
