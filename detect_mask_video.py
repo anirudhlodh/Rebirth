@@ -72,8 +72,8 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 	return (locs, preds)
 
 # load our serialized face detector model from disk
-prototxtPath = r"/home/anirudh/Documents/Projects/Face-Mask-Detection_copy/face_detector/deploy.prototxt"
-weightsPath = r"/home/anirudh/Documents/Projects/Face-Mask-Detection_copy/face_detector/res10_300x300_ssd_iter_140000.caffemodel"
+prototxtPath = r"/home/anirudh/Desktop/2nd_year_project/face_detector/deploy.prototxt"
+weightsPath = r"/home/anirudh/Desktop/2nd_year_project/face_detector/res10_300x300_ssd_iter_140000.caffemodel"
 faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
 
 # load the face mask detector model from disk
@@ -88,7 +88,7 @@ while True:
 	# grab the frame from the threaded video stream and resize it
 	# to have a maximum width of 400 pixels
 	frame = vs.read()
-	frame = imutils.resize(frame, width=400)
+	frame = imutils.resize(frame, width=1000)
 
 	# detect faces in the frame and determine if they are wearing a
 	# face mask or not
