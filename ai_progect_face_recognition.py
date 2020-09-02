@@ -43,8 +43,8 @@ while True:
         right *= 5
         bottom *= 5
         left *= 3
-        cv2.rectangle(frame, (left, top), (right, bottom), (0, 255, 0), 2)
-        cv2.rectangle(frame, (left, bottom - 25), (right, bottom), (0, 255, 0), cv2.FILLED)
+        cv2.rectangle(frame, (left, top), (right, bottom), (255, 0, 0), 2)
+        cv2.rectangle(frame, (left, bottom - 25), (right, bottom), (255, 0, 0), cv2.FILLED)
         font = cv2.FONT_HERSHEY_SIMPLEX
         cv2.putText(frame, name, (left + 6, bottom - 6), font, 0.75, (255, 255, 255), 1)
     cv2.imshow('Video', frame)
