@@ -8,6 +8,32 @@ import imutils
 import time
 import cv2
 import os
+import sys
+import subprocess
+
+
+def spawn_program_and_die(program, exit_code=0):
+    """
+    Start an external program and exit the script 
+    with the specified return code.
+
+    Takes the parameter program, which is a list 
+    that corresponds to the argv of your command.
+    """
+    # Start the external program
+    subprocess.Popen(program)
+    # We have started the program, and can suspend this interpreter
+    sys.exit(exit_code)
+
+def countdown(t): 
+    
+    while t: 
+        mins, secs = divmod(t, 60) 
+        timer = '{:02d}:{:02d}'.format(mins, secs) 
+        print(timer, end="\r") 
+        time.sleep(1) 
+        t -= 1
+    
 
 def detect_and_predict_mask(frame, faceNet, maskNet):
 	# grab the dimensions of the frame and then construct a blob
@@ -66,9 +92,16 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 		# in the above `for` loop
 		faces = np.array(faces, dtype="float32")
 		preds = maskNet.predict(faces, batch_size=32)
+		post = "No Mask" if preds[0][1] > preds[0][0] else "Mask"
+		if post == "No Mask":
+			countdown(int(5))
+			var = False
+		else:
+			print("Mask Detected")
 
-	# return a 2-tuple of the face locations and their corresponding
-	# locations
+
+	#return a 2-tuple of the face locations and their corresponding
+	#locations
 	return (locs, preds)
 
 # load our serialized face detector model from disk
@@ -83,8 +116,10 @@ maskNet = load_model("mask_detector.model")
 print("[INFO] starting video stream...")
 vs = VideoStream(src=0).start()
 
+var = True
+
 # loop over the frames from the video stream
-while True:
+while var == True:
 	# grab the frame from the threaded video stream and resize it
 	# to have a maximum width of 400 pixels
 	frame = vs.read()
@@ -93,7 +128,6 @@ while True:
 	# detect faces in the frame and determine if they are wearing a
 	# face mask or not
 	(locs, preds) = detect_and_predict_mask(frame, faceNet, maskNet)
-
 	# loop over the detected face locations and their corresponding
 	# locations
 	for (box, pred) in zip(locs, preds):
@@ -115,6 +149,7 @@ while True:
 			cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2) 
 		cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
 
+
 	# show the output frame
 	cv2.imshow("Frame", frame)
 	key = cv2.waitKey(1) & 0xFF
@@ -126,3 +161,7 @@ while True:
 # do a bit of cleanup
 cv2.destroyAllWindows()
 vs.stop()
+print("Video Stream Stopped")
+print("Script changed")
+spawn_program_and_die(['python3.8', '/home/anirudh/Desktop/2nd_year_project/ai_progect_face_recognition.py'])
+#os.system('/usr/bin/python3.8 /home/anirudh/Desktop/2nd_year_project/ai_progect_face_recognition.py')

@@ -2,6 +2,7 @@ import face_recognition
 import cv2
 import numpy as np
 import imutils
+import os
 video_capture = cv2.VideoCapture(0)
 print("[INFO] starting video stream...")
 print("[INFO] Recognising Faces...")
@@ -52,3 +53,5 @@ while True:
         break
 video_capture.release()
 cv2.destroyAllWindows()
+
+#os.system('python3.8 /home/anirudh/Desktop/2nd_year_project/detect_mask_video.py')
