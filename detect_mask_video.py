@@ -4,12 +4,12 @@ from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.models import load_model
 from imutils.video import VideoStream
 import numpy as np
+import subprocess
 import imutils
 import time
 import cv2
 import os
 import sys
-import subprocess
 
 
 def spawn_program_and_die(program, exit_code=0):
