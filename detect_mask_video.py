@@ -95,9 +95,11 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 		post = "No Mask" if preds[0][1] > preds[0][0] else "Mask"
 		if post == "No Mask":
 			countdown(int(5))
-			var = False
+			print("Script changed")
+			spawn_program_and_die(['python3.8', '/home/anirudh/Desktop/2nd_year_project/ai_progect_face_recognition.py'])
 		else:
 			print("Mask Detected")
+			
 
 
 	#return a 2-tuple of the face locations and their corresponding
@@ -162,6 +164,6 @@ while var == True:
 cv2.destroyAllWindows()
 vs.stop()
 print("Video Stream Stopped")
-print("Script changed")
-spawn_program_and_die(['python3.8', '/home/anirudh/Desktop/2nd_year_project/ai_progect_face_recognition.py'])
+# print("Script changed")
+# spawn_program_and_die(['python3.8', '/home/anirudh/Desktop/2nd_year_project/ai_progect_face_recognition.py'])
 #os.system('/usr/bin/python3.8 /home/anirudh/Desktop/2nd_year_project/ai_progect_face_recognition.py')
