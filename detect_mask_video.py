@@ -94,7 +94,7 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 		preds = maskNet.predict(faces, batch_size=32)
 		post = "No Mask" if preds[0][1] > preds[0][0] else "Mask"
 		if post == "No Mask":
-			countdown(int(5))
+			#countdown(int(5))
 			print("Script changed")
 			spawn_program_and_die(['python3.8', '/home/anirudh/Desktop/2nd_year_project/ai_progect_face_recognition.py'])
 		else:

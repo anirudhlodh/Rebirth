@@ -53,5 +53,3 @@ while True:
         break
 video_capture.release()
 cv2.destroyAllWindows()
-
-#os.system('python3.8 /home/anirudh/Desktop/2nd_year_project/detect_mask_video.py')
