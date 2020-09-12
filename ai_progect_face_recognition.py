@@ -2,8 +2,16 @@ import face_recognition
 import cv2
 import numpy as np
 import imutils
-import os
-video_capture = cv2.VideoCapture(0)
+from imutils.video import VideoStream
+import os 
+import time
+from tkinter import *    
+from tkinter import messagebox  
+t_end = time.time() + 10 * 1
+top = Tk()
+top.withdraw()
+#video_capture = cv2.VideoCapture(0)
+video_capture = VideoStream(src=0).start()
 print("[INFO] starting video stream...")
 print("[INFO] Recognising Faces...")
 Utkarsh_Saxena = face_recognition.load_image_file("/home/anirudh/Desktop/2nd_year_project/Utkarsh Saxena/utkarsh.jpeg")
@@ -18,8 +26,9 @@ face_locations = []
 face_encodings = []
 face_names = []
 process_this_frame = True
-while True:
-    ret, frame = video_capture.read()
+while time.time() < t_end:
+    frame = video_capture.read()
+    #ret, frame = video_capture.read()
     frame = imutils.resize(frame, width=1000)
     small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
     rgb_small_frame = small_frame[:, :, ::-1]
@@ -48,8 +57,12 @@ while True:
         cv2.rectangle(frame, (left, bottom - 25), (right, bottom), (255, 0, 0), cv2.FILLED)
         font = cv2.FONT_HERSHEY_SIMPLEX
         cv2.putText(frame, name, (left + 6, bottom - 6), font, 0.75, (255, 255, 255), 1)
+        
     cv2.imshow('Video', frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
-video_capture.release()
+
+video_capture.stop()
+#video_capture.release()
 cv2.destroyAllWindows()
+messagebox.showwarning("warning",name+" pls wear a mask") 
