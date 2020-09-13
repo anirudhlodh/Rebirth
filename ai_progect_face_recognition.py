@@ -5,9 +5,25 @@ import imutils
 from imutils.video import VideoStream
 import os 
 import time
+import subprocess
+import sys
 from tkinter import *    
 from tkinter import messagebox  
-t_end = time.time() + 10 * 1
+
+def spawn_program_and_die(program, exit_code=0):
+    """
+    Start an external program and exit the script 
+    with the specified return code.
+
+    Takes the parameter program, which is a list 
+    that corresponds to the argv of your command.
+    """
+    # Start the external program
+    subprocess.Popen(program)
+    # We have started the program, and can suspend this interpreter
+    sys.exit(exit_code)
+
+t_end = time.time() + 5 * 1
 top = Tk()
 top.withdraw()
 #video_capture = cv2.VideoCapture(0)
@@ -66,3 +82,4 @@ video_capture.stop()
 #video_capture.release()
 cv2.destroyAllWindows()
 messagebox.showwarning("warning",name+" pls wear a mask") 
+spawn_program_and_die(['python3.8', '/home/anirudh/Desktop/2nd_year_project/detect_mask_video.py'])
