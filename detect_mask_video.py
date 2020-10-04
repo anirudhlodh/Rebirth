@@ -7,9 +7,9 @@ import numpy as np
 import subprocess
 import imutils
 import time
+import sys
 import cv2
 import os
-import sys
 
 t_end = time.time() + 15 * 1
 t_ending = time.time() + 10 * 1
