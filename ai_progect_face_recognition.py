@@ -9,6 +9,7 @@ import subprocess
 import sys
 from tkinter import *    
 from tkinter import messagebox  
+import smtplib
 
 def spawn_program_and_die(program, exit_code=0):
     """
@@ -82,4 +83,31 @@ video_capture.stop()
 #video_capture.release()
 cv2.destroyAllWindows()
 messagebox.showwarning("warning",name+" pls wear a mask") 
+if name == "Anirudh Lodh":
+    content = 'Anirudh Lodh please wear a mask'
+    mail = smtplib.SMTP('smtp.gmail.com',587)
+    mail.ehlo()
+    mail.starttls()
+    mail.login('facemaskdetection@gmail.com','hihowareyou')
+    mail.sendmail('facemaskdetection@gmail.com','anirudhlodh@gmail.com',content)
+    mail.close()
+    print("Mail Sent")
+if name == "Utkarsh Saxena":
+    content = 'Utkarsh Saxena pls wear a mask'
+    mail = smtplib.SMTP('smtp.gmail.com',587)
+    mail.ehlo()
+    mail.starttls()
+    mail.login('facemaskdetection@gmail.com','hihowareyou')
+    mail.sendmail('facemaskdetection@gmail.com','utkarsh.saxena2019@vitbhopal.ac.in',content)
+    mail.close()
+    print("Mail Sent")
+if name == "Ajmal Khan":
+    content = 'Ajmal Khan pls wear a mask'
+    mail = smtplib.SMTP('smtp.gmail.com',587)
+    mail.ehlo()
+    mail.starttls()
+    mail.login('facemaskdetection@gmail.com','hihowareyou')
+    mail.sendmail('facemaskdetection@gmail.com','ajmal.khan2019@vitbhopal.ac.in',content)
+    mail.close()
+    print("Mail Sent")
 spawn_program_and_die(['python3.8', '/home/anirudh/Desktop/2nd_year_project/detect_mask_video.py'])
